@@ -45,18 +45,16 @@ function TodoList({bool}: {bool: boolean}) {
         }
     }
 
-    // 안됨
+    // 4000..
     const todoChangeMutation = useMutation({
         mutationFn: async (todo:TodoType) => {
-          const response = await fetch(`http://localhost:3000/api/todos/${todo.id}`, {
+          const response = await fetch(`http://localhost:4000/todos/${todo.id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ isDone: !todo.isDone }),
           });
-        const updatedTodo = await response.json();
-        return updatedTodo;
         },
         onSuccess: () => {
             queryClient.invalidateQueries({
